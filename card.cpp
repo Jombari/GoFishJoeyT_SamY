@@ -1,4 +1,8 @@
+#include <iostream>
+#include <string>
+#include  "card.h"
 
-string toString(){
-  cout<< myRank <<   mySuity<<endl
+string Card::toString() const{
+  return rankString(myRank) + suitString(mySuit);
 }
+
