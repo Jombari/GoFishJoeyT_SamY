@@ -26,11 +26,24 @@ int  Card::getRank() const{
 
 string Card::suitString(Suit s) const{
 
-
 };
 
 string Card::rankString(int r) const{
 
+  if(r >1 && r < 11)
+    return  std::to_string(r);
+
+  switch(r){
+    case 1:
+      return "A";
+    case 11:
+      return "J";
+    case 12:
+      return "Q";
+
+    case 13:
+      return "K";
+  }
 };
 
 bool Card::operator == (const Card& rhs) const{
