@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <random>
 #include "player.h"
 
 Player::Player(){
@@ -7,11 +8,14 @@ Player::Player(){
 };
 
 void Player::addCard(Card c){
-
+    myHand.push_back(c);
 };
 
 void Player::bookCards(Card c1, Card c2){
-
+    myBook.push_back(c1);
+    myBook.push_back(c2);
+    removeCardFromHand(c1);
+    removeCardFromHand(c2);
 
 };
 
@@ -24,6 +28,8 @@ bool Player::rankInHand(Card c) const{
 };
 
 Card Player::chooseCardFromHand() const{
+    int range = myHand.end() - myHand.begin() ;
+    return  myHand[rand()%range];
 
 };
 
@@ -32,7 +38,7 @@ bool Player::cardInHand(Card c) const{
 };
 
 Card Player::removeCardFromHand(Card c){
-
+    std::remove(myHand.begin(),myHand.end(),c);
 };
 
 string Player::showHand() const{
@@ -54,8 +60,6 @@ int Player::getBookSize() const{
 bool Player::checkHandForPair(Card &c1, Card &c2){
 
 };
-
-
 
 bool Player::sameRankInHand(Card c) const{
 
