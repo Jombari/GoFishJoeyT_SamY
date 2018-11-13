@@ -1,70 +1,70 @@
-#include <iostream>
-#include <string>
-#include <random>
+
+//
+// Created by Samuel Yeboah on 11/9/2018.
+//
+
 #include "player.h"
+using namespace std;
 
-Player::Player(){
+    player::player(string name){
+        myName = name;
+    };
 
-};
+    string player::getName() const {
+        return myName;
+    };
 
-void Player::addCard(Card c){
-    myHand.push_back(c);
-};
 
-void Player::bookCards(Card c1, Card c2){
-    myBook.push_back(c1);
-    myBook.push_back(c2);
-    removeCardFromHand(c1);
-    removeCardFromHand(c2);
+    void player::addCard(Card c){
+        if(myHand.size() <5){
+            myHand.push_back(c);
+        }
+        return;
+    };  //adds a card to the hand
 
-};
+    //Adds card to the book
+    void player::bookCards(Card c1, Card c2){
+        myBook.push_back(c1);
+        myBook.push_back(c2);
+    };
 
-bool Player::checkHandForBook(Card &c1, Card &c2){
-
-};
-
-bool Player::rankInHand(Card c) const{
-    vector<char>::iterator iter;
-
-    for (iter = charList.begin(); iter != charList.end(); iter++) {
-        std::cout << *iter;
+    //Does the player have the card c in her hand?
+    bool player::cardInHand(Card c)const{
+        vector <Card> ::const_iterator itr;
+        for(itr=myHand.begin();itr!=myHand.end();itr++){
+            if(c.getRank() == itr->getRank()){
+                return true;
+            }
+        }
+        return false;
     }
-};
 
-Card Player::chooseCardFromHand() const{
-    int range = myHand.end() - myHand.begin() ;
-    return  myHand[rand()%range];
+    //Remove the card c from the hand and return it to the caller
+    Card player::removeCardFromHand(Card c){
+        vector <Card> ::iterator itr;
+        Card removalCard;
+        for(itr = myHand.begin();itr!=myHand.end();itr++){
+            if(itr->getRank() == c.getRank()){
+                removalCard = *itr;
+                myHand.erase(itr);
+                return removalCard;
+            };
+        }
+        return removalCard;
+    };
 
-};
+    string player::showHand() const{
+        vector<Card, std::allocator<Card>>::const_iterator itr;
+        string hand = "";
+        for(itr = myHand.begin(); itr!=myHand.end();itr++){
+            hand+= itr->toString() + " ";
+        }
+    };
+    string player::showBooks() const{};
 
-bool Player::cardInHand(Card c) const{
-
-};
-
-Card Player::removeCardFromHand(Card c){
-    std::remove(myHand.begin(),myHand.end(),c);
-};
-
-string Player::showHand() const{
-
-};
-
-string Player::showBooks() const{
-
-};
-
-int Player::getHandSize() const{
-
-};
-
-int Player::getBookSize() const{
-return myBook.end() - myBook.begin();
-};
-
-bool Player::checkHandForPair(Card &c1, Card &c2){
-
-};
-
-bool Player::sameRankInHand(Card c) const{
-
-};
+    int player::getHandSize() const{
+        return myHand.size();
+    };
+    int player::getBookSize() const{
+        return myBook.size();
+    };
