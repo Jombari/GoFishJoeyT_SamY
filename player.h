@@ -2,21 +2,21 @@
 // Created by Samuel Yeboah on 11/9/2018.
 //
 
-#ifndef GOFISHREDO_Player_H
-#define GOFISHREDO_Player_H
+#ifndef GOFISHREDO_PLAYER_H
+#define GOFISHREDO_PLAYER_H
 
 #include <iostream>
 #include <string>
 #include <vector>
 #include <list>
-#include "card.h"
+#include "Deck.h"
 
 using namespace std;
-class Player {
+class player {
 public:
-    Player();
+    player();
 
-    Player(string name);
+    player(string name);
 
     string getName() const ;
 
@@ -24,7 +24,7 @@ public:
     void addCard(Card c);  //adds a card to the hand
     void bookCards(Card c1, Card c2);
 
-    //Does the Player have the card c in her hand?
+    //Does the player have the card c in her hand?
     bool cardInHand(Card c) const;
 
     //Remove the card c from the hand and return it to the caller
@@ -44,4 +44,4 @@ private:
 };
 
 
-#endif //GOFISHREDO_Player_H
+#endif //GOFISHREDO_PLAYER_H

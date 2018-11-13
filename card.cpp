@@ -23,10 +23,11 @@ string Card::toString() const{
 };
 
 bool Card::sameSuitAs(const Card& c) const {
-
-  return mySuit == c.mySuit;
-
-
+    srand(time(0));
+    if(c.mySuit == this->mySuit) {
+        return true;
+    }
+    return false;
 };
 
 int  Card::getRank() const{
@@ -70,12 +71,15 @@ string Card::rankString(int r) const{
 };
 
 bool Card::operator == (const Card& rhs) const{
-  return mySuit == rhs.mySuit && myRank == rhs.myRank;
+    srand(time(0));
+    return rhs.myRank == this->myRank && this->sameSuitAs(rhs);
 };
 
 bool Card::operator != (const Card& rhs) const{
-  return mySuit != rhs.mySuit || myRank != rhs.myRank;
-
+    srand(time(0));
+    if(rhs.myRank == this->myRank && this->sameSuitAs(rhs)){
+        return false;
+    }
+    return true;
 };
-
 

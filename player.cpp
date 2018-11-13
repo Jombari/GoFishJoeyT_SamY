@@ -1,21 +1,20 @@
-
 //
 // Created by Samuel Yeboah on 11/9/2018.
 //
 
-#include "Player.h"
+#include "player.h"
 using namespace std;
 
-    Player::Player(string name){
+    player::player(string name){
         myName = name;
     };
 
-    string Player::getName() const {
+    string player::getName() const {
         return myName;
     };
 
 
-    void Player::addCard(Card c){
+    void player::addCard(Card c){
         if(myHand.size() <5){
             myHand.push_back(c);
         }
@@ -23,13 +22,14 @@ using namespace std;
     };  //adds a card to the hand
 
     //Adds card to the book
-    void Player::bookCards(Card c1, Card c2){
+    void player::bookCards(Card c1, Card c2){
         myBook.push_back(c1);
         myBook.push_back(c2);
+        return;
     };
 
-    //Does the Player have the card c in her hand?
-    bool Player::cardInHand(Card c)const{
+    //Does the player have the card c in her hand?
+    bool player::cardInHand(Card c)const{
         vector <Card> ::const_iterator itr;
         for(itr=myHand.begin();itr!=myHand.end();itr++){
             if(c.getRank() == itr->getRank()){
@@ -40,7 +40,7 @@ using namespace std;
     }
 
     //Remove the card c from the hand and return it to the caller
-    Card Player::removeCardFromHand(Card c){
+    Card player::removeCardFromHand(Card c){
         vector <Card> ::iterator itr;
         Card removalCard;
         for(itr = myHand.begin();itr!=myHand.end();itr++){
@@ -53,18 +53,35 @@ using namespace std;
         return removalCard;
     };
 
-    string Player::showHand() const{
-        vector<Card, std::allocator<Card> >::const_iterator itr;
+    string player::showHand() const{
+        vector<Card>::const_iterator itr;
         string hand = "";
         for(itr = myHand.begin(); itr!=myHand.end();itr++){
-            hand+= itr->toString() + " ";
+            hand+= itr->toString() + "  ";
         }
+        hand+= "\n";
+        return hand;
     };
-    string Player::showBooks() const{};
 
-    int Player::getHandSize() const{
+    string player::showBooks() const{
+        vector<Card>::const_iterator itr;
+        string books = "";
+        int newLineFlag = 0;
+        for(itr = myBook.begin();itr!=myBook.end();itr++){
+            books+= itr->toString();
+            books+= "   ";
+            newLineFlag++;
+            if(newLineFlag==2){
+                newLineFlag = 0;
+                books += "\n";
+            }
+        }
+        return books;
+    };
+
+    int player::getHandSize() const{
         return myHand.size();
     };
-    int Player::getBookSize() const{
+    int player::getBookSize() const{
         return myBook.size();
     };
