@@ -9,7 +9,7 @@
 #include <string>
 #include <vector>
 #include <list>
-#include "Deck.h"
+#include "deck.h"
 
 using namespace std;
 class player {
@@ -30,18 +30,14 @@ public:
     //Remove the card c from the hand and return it to the caller
     Card removeCardFromHand(Card c);
 
-    bool checkHandForPair(Card &c1, Card &c2);
-
     string showHand() const;
     string showBooks() const;
 
     int getHandSize() const;
     int getBookSize() const;
-
-    void takeTurn();
-
     Card chooseCardFromHand() const;
-
+    void checkHandForPairs();
+    Card takeTurn();
 private:
     vector<Card> myHand;
     vector<Card> myBook;

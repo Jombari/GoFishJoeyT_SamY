@@ -15,7 +15,7 @@ using namespace std;
 
 
     void player::addCard(Card c){
-        if(myHand.size() <5){
+        if(myHand.size() <7){
             myHand.push_back(c);
         }
         return;
@@ -41,12 +41,11 @@ using namespace std;
 
     //Remove the card c from the hand and return it to the caller
     Card player::removeCardFromHand(Card c){
-        vector <Card> ::iterator itr;
         Card removalCard;
-        for(itr = myHand.begin();itr!=myHand.end();itr++){
-            if(itr->getRank() == c.getRank()){
-                removalCard = *itr;
-                myHand.erase(itr);
+        for(int x = 0;x<myHand.size();x++){
+            if(myHand[x].getRank() == c.getRank()){
+                removalCard = myHand[x];
+                myHand.erase(myHand.begin()+x);
                 return removalCard;
             };
         }
@@ -54,10 +53,9 @@ using namespace std;
     };
 
     string player::showHand() const{
-        vector<Card>::const_iterator itr;
         string hand = "";
-        for(itr = myHand.begin(); itr!=myHand.end();itr++){
-            hand+= itr->toString() + "  ";
+        for(int x = 0; x<myHand.size();x++){
+            hand+= myHand[x].toString() + "  ";
         }
         hand+= "\n";
         return hand;
@@ -83,17 +81,29 @@ using namespace std;
         return myHand.size();
     };
     int player::getBookSize() const{
-        return myBook.size();
+        return myBook.size()/2;
     };
-
 
     Card player::chooseCardFromHand() const{
-        return myHand[rand()%getHandSize()];
+        int num = rand()%getHandSize();
+        return myHand[num];
 
     };
-    void player::takeTurn(){
+    Card player::takeTurn(){
         Card tmp = chooseCardFromHand();
-        cout << myName << " asks - Do you have a " << tmp.getRank()  << "?" << endl
+        cout << myName << " asks - Do you have a " << tmp.getRank()  << "?" << "\n";
+        return tmp;
+    };
 
-
+    void player::checkHandForPairs(){
+        vector<Card>::iterator itr;
+        for(int x = 0;x<myHand.size();x++){
+            for(int y = x+1;y<myHand.size();y++){
+                if(myHand[x].getRank() == myHand[y].getRank()){
+                    this->bookCards(myHand[x],myHand[y]);
+                    this->removeCardFromHand(myHand[x]);
+                    this->removeCardFromHand(myHand[y-1]);
+                }
+            }
+        }
     };

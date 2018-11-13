@@ -2,7 +2,7 @@
 // Created by Samuel Yeboah on 11/9/2018.
 //
 #include "card.h"
-#include  "Deck.h"
+#include  "deck.h"
 using namespace std;
 Deck::Deck(){
     Card::Suit cardType;
@@ -47,8 +47,9 @@ Card Deck::dealCard(){
     Card tmp;
     if(myIndex == 52)
         return tmp;
-    myIndex ++;
-    return myCards[myIndex-1];
+    tmp = myCards[myIndex];
+    myIndex++;
+    return tmp;
 };
 
 int  Deck::size() const{
