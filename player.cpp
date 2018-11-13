@@ -85,3 +85,15 @@ using namespace std;
     int player::getBookSize() const{
         return myBook.size();
     };
+
+
+    Card player::chooseCardFromHand() const{
+        return myHand[rand()%getHandSize()];
+
+    };
+    void player::takeTurn(){
+        Card tmp = chooseCardFromHand();
+        cout << myName << " asks - Do you have a " << tmp.getRank()  << "?" << endl
+
+
+    };

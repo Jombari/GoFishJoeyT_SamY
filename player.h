@@ -30,11 +30,17 @@ public:
     //Remove the card c from the hand and return it to the caller
     Card removeCardFromHand(Card c);
 
+    bool checkHandForPair(Card &c1, Card &c2);
+
     string showHand() const;
     string showBooks() const;
 
     int getHandSize() const;
     int getBookSize() const;
+
+    void takeTurn();
+
+    Card chooseCardFromHand() const;
 
 private:
     vector<Card> myHand;

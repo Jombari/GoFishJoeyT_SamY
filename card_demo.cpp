@@ -10,7 +10,7 @@ using namespace std;
 
 
 // PROTOTYPES for functions used by this demonstration program:
-void dealHand(Deck &d, Player &p, int numCards);
+void dealHand(Deck &d, player &p, int numCards);
 
 
 
@@ -19,8 +19,8 @@ int main( )
 {
     int numCards = 5;
     
-    Player p1("Joe");
-    Player p2("Jane");
+    player p1("Joe");
+    player p2("Jane");
     
     Deck d;  //create a deck of cards
     d.shuffle();
@@ -30,13 +30,18 @@ int main( )
        
     cout << p1.getName() <<" has : " << p1.showHand() << endl;
     cout << p2.getName() <<" has : " << p2.showHand() << endl;
-    
+
+
+    while(d.size()>0){
+        p1.takeTurn();
+        p2.takeTurn();
+    }
     return EXIT_SUCCESS;  
 }
 
 
 
-void dealHand(Deck &d, Player &p, int numCards)
+void dealHand(Deck &d, player &p, int numCards)
 {
    for (int i=0; i < numCards; i++)
       p.addCard(d.dealCard());
