@@ -4,7 +4,7 @@
 #include <cstdlib>     // Provides EXIT_SUCCESS
 #include "card.h"
 #include "player.h"
-#include "deck.h"
+#include "Deck.h"
 
 using namespace std;
 

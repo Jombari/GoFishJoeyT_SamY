@@ -56,7 +56,7 @@ int  Deck::size() const{
 };
 
 void Deck::toDeckString(){
-    for(int x =0; x<52; x++){
+    for(int x = myIndex; x<52; x++){
         cout << myCards[x].toString() << "\n";
     }
 }
