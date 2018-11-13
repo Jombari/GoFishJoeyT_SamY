@@ -3,19 +3,19 @@
 // Created by Samuel Yeboah on 11/9/2018.
 //
 
-#include "player.h"
+#include "Player.h"
 using namespace std;
 
-    player::player(string name){
+    Player::Player(string name){
         myName = name;
     };
 
-    string player::getName() const {
+    string Player::getName() const {
         return myName;
     };
 
 
-    void player::addCard(Card c){
+    void Player::addCard(Card c){
         if(myHand.size() <5){
             myHand.push_back(c);
         }
@@ -23,13 +23,13 @@ using namespace std;
     };  //adds a card to the hand
 
     //Adds card to the book
-    void player::bookCards(Card c1, Card c2){
+    void Player::bookCards(Card c1, Card c2){
         myBook.push_back(c1);
         myBook.push_back(c2);
     };
 
-    //Does the player have the card c in her hand?
-    bool player::cardInHand(Card c)const{
+    //Does the Player have the card c in her hand?
+    bool Player::cardInHand(Card c)const{
         vector <Card> ::const_iterator itr;
         for(itr=myHand.begin();itr!=myHand.end();itr++){
             if(c.getRank() == itr->getRank()){
@@ -40,7 +40,7 @@ using namespace std;
     }
 
     //Remove the card c from the hand and return it to the caller
-    Card player::removeCardFromHand(Card c){
+    Card Player::removeCardFromHand(Card c){
         vector <Card> ::iterator itr;
         Card removalCard;
         for(itr = myHand.begin();itr!=myHand.end();itr++){
@@ -53,18 +53,18 @@ using namespace std;
         return removalCard;
     };
 
-    string player::showHand() const{
-        vector<Card, std::allocator<Card>>::const_iterator itr;
+    string Player::showHand() const{
+        vector<Card, std::allocator<Card> >::const_iterator itr;
         string hand = "";
         for(itr = myHand.begin(); itr!=myHand.end();itr++){
             hand+= itr->toString() + " ";
         }
     };
-    string player::showBooks() const{};
+    string Player::showBooks() const{};
 
-    int player::getHandSize() const{
+    int Player::getHandSize() const{
         return myHand.size();
     };
-    int player::getBookSize() const{
+    int Player::getBookSize() const{
         return myBook.size();
     };

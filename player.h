@@ -2,8 +2,8 @@
 // Created by Samuel Yeboah on 11/9/2018.
 //
 
-#ifndef GOFISHREDO_PLAYER_H
-#define GOFISHREDO_PLAYER_H
+#ifndef GOFISHREDO_Player_H
+#define GOFISHREDO_Player_H
 
 #include <iostream>
 #include <string>
@@ -12,11 +12,11 @@
 #include "card.h"
 
 using namespace std;
-class player {
+class Player {
 public:
-    player();
+    Player();
 
-    player(string name);
+    Player(string name);
 
     string getName() const ;
 
@@ -24,7 +24,7 @@ public:
     void addCard(Card c);  //adds a card to the hand
     void bookCards(Card c1, Card c2);
 
-    //Does the player have the card c in her hand?
+    //Does the Player have the card c in her hand?
     bool cardInHand(Card c) const;
 
     //Remove the card c from the hand and return it to the caller
@@ -44,4 +44,4 @@ private:
 };
 
 
-#endif //GOFISHREDO_PLAYER_H
+#endif //GOFISHREDO_Player_H
