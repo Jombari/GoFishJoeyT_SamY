@@ -20,8 +20,8 @@ string Card::toString() const{
 };
 
 bool Card::sameSuitAs(const Card& c) const {
-  //bool test = (suitString(mySuit) == suitString(*(&c+ (int) sizeof(myRank))));
-  //return test;
+
+  return mySuit == c.mySuit;
 
 };
 
@@ -64,11 +64,11 @@ string Card::rankString(int r) const{
 };
 
 bool Card::operator == (const Card& rhs) const{
-
+  return mySuit == rhs.mySuit && myRank == rhs.myRank;
 };
 
 bool Card::operator != (const Card& rhs) const{
-
+  return mySuit != rhs.mySuit || myRank != rhs.myRank;
 
 };
 

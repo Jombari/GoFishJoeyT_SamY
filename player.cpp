@@ -24,7 +24,11 @@ bool Player::checkHandForBook(Card &c1, Card &c2){
 };
 
 bool Player::rankInHand(Card c) const{
+    vector<char>::iterator iter;
 
+    for (iter = charList.begin(); iter != charList.end(); iter++) {
+        std::cout << *iter;
+    }
 };
 
 Card Player::chooseCardFromHand() const{
@@ -54,7 +58,7 @@ int Player::getHandSize() const{
 };
 
 int Player::getBookSize() const{
-
+return myBook.end() - myBook.begin();
 };
 
 bool Player::checkHandForPair(Card &c1, Card &c2){
