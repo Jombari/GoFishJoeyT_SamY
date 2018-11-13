@@ -74,3 +74,12 @@ bool Card::operator == (const Card& rhs) const{
     srand(time(0));
     return rhs.myRank == this->myRank && this->sameSuitAs(rhs);
 };
+
+bool Card::operator != (const Card& rhs) const{
+    srand(time(0));
+    if(rhs.myRank == this->myRank && this->sameSuitAs(rhs)){
+        return false;
+    }
+    return true;
+};
+
