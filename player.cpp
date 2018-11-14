@@ -1,7 +1,11 @@
 //
 // Created by Samuel Yeboah on 11/9/2018.
 //
-
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+#include <algorithm>
+#include <string>
 #include "player.h"
 using namespace std;
 
@@ -15,16 +19,17 @@ using namespace std;
 
 
     void player::addCard(Card c){
-        if(myHand.size() <7){
+	    cout<< myName  <<"  recieves "<<c.toString() <<endl;
             myHand.push_back(c);
-        }
-        return;
+        
     };  //adds a card to the hand
 
     //Adds card to the book
     void player::bookCards(Card c1, Card c2){
         myBook.push_back(c1);
         myBook.push_back(c2);
+
+	cout<<myName<<" booked " << c1.toString() << " " << c2.toString() << endl;
         return;
     };
 
@@ -37,7 +42,7 @@ using namespace std;
             }
         }
         return false;
-    }
+    };
 
     //Remove the card c from the hand and return it to the caller
     Card player::removeCardFromHand(Card c){
@@ -46,6 +51,7 @@ using namespace std;
             if(myHand[x].getRank() == c.getRank()){
                 removalCard = myHand[x];
                 myHand.erase(myHand.begin()+x);
+		cout << myName << "removed " << removalCard.toString() << endl;
                 return removalCard;
             };
         }
@@ -95,17 +101,21 @@ using namespace std;
 
         while(guess){
             if(myHand.size() == 0){
-                addCard(d.dealCard());
+		if(d.size()!=0)
+                    addCard(d.dealCard());
                 return;
             }
             int cnt =0;
             Card tmp = chooseCardFromHand();
             Card pair;
-            cout << myName << " asks - Do you have a " << tmp.getRank()  << "?" << "\n";
+            cout << myName << " asks - Do you have a " << tmp.rankString(tmp.getRank())  << "?" << "\n";
             guess = p.cardInHand(tmp);
             if(!guess){
                 cout << "Go Fish" << endl;
-                addCard(d.dealCard());
+                if(d.size()!=0){
+                    addCard(d.dealCard());
+		    cout<<myName<<" draws card" <<endl;
+                }
                 checkHandForPairs();
                 return;
             }
