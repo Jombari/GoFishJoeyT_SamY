@@ -56,6 +56,7 @@ using namespace std;
         string hand = "";
         for(int x = 0; x<myHand.size();x++){
             hand+= myHand[x].toString() + "  ";
+            cout<<"J";
         }
         hand+= "\n";
         return hand;
@@ -89,10 +90,35 @@ using namespace std;
         return myHand[num];
 
     };
-    Card player::takeTurn(){
-        Card tmp = chooseCardFromHand();
-        cout << myName << " asks - Do you have a " << tmp.getRank()  << "?" << "\n";
-        return tmp;
+    void player::takeTurn(Deck& d,player& p){
+        bool guess = true;
+
+        while(guess){
+            if(myHand.size() == 0){
+                addCard(d.dealCard());
+                return;
+            }
+            int cnt =0;
+            Card tmp = chooseCardFromHand();
+            Card pair;
+            cout << myName << " asks - Do you have a " << tmp.getRank()  << "?" << "\n";
+            guess = p.cardInHand(tmp);
+            if(!guess){
+                cout << "Go Fish" << endl;
+                addCard(d.dealCard());
+                checkHandForPairs();
+                return;
+            }
+            while(p.cardInHand(tmp)){
+                addCard(p.removeCardFromHand(tmp));
+                checkHandForPairs();
+                cnt++;
+            }
+            cout<< "Yes I have " << cnt <<endl;
+        }
+
+
+
     };
 
     void player::checkHandForPairs(){

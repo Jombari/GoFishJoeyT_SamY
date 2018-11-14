@@ -30,25 +30,29 @@ int main() {
     outputFile.open("output.txt");
     dealHand(d, p2, numCards);
     outputFile << p2.getName() << " hand: " << p2.showHand();
-    outputFile.close();
 
     //remove pairs that are already in hand
     p1.checkHandForPairs();
     p2.checkHandForPairs();
-    outputFile.open("output.txt");
     outputFile << "\n";
     outputFile << p1.getName() << " hand: " << p1.showHand();
     outputFile << p2.getName() << " hand: " << p2.showHand();
     outputFile.close();
 
+
     while(p2.getBookSize() + p1.getBookSize() != 26) {
+        p1.takeTurn(d,p2);
+        p2.takeTurn(d,p1);
         //player 1s turn
+        /*
         bool guessAgain;
         if (p1.getHandSize() == 0) {
             p1.addCard(d.dealCard());
-        }else if(noMatchCnt == 4){
+        }
+        else if(noMatchCnt == 4){
             break;
-        } else {
+        }
+        else{
             do {
                 if (p1.getHandSize() == 0) {
                     p1.addCard(d.dealCard());
@@ -65,7 +69,7 @@ int main() {
                     outputFile.close();
 
                     Card temp = p1.removeCardFromHand(guess);
-                    p1.bookCards(gMatch, guess);
+                    p1.bookCards( , guess);
 
                     outputFile.open("output.txt");
                     outputFile << p1.getName() << " books the " << guess.getRank();
@@ -151,13 +155,15 @@ int main() {
                 }
             } while (guessAgain);
             p2.checkHandForPairs();
-        }
+       */
     }
+
     outputFile.open("output.txt");
     outputFile <<"Game Over";
     outputFile << p1.showHand() << p1.showBooks();
     outputFile << p2.showHand() << p2.showBooks();
     outputFile.close();
     return 0;
+
 }
 

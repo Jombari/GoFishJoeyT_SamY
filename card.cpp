@@ -9,6 +9,7 @@
 
 Card::Card(){
     srand(time(0));
+    myRank = -1;
 };
 
 Card::Card(int rank, Suit s){

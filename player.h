@@ -9,7 +9,7 @@
 #include <string>
 #include <vector>
 #include <list>
-#include "deck.h"
+#include "Deck.h"
 
 using namespace std;
 class player {
@@ -37,7 +37,7 @@ public:
     int getBookSize() const;
     Card chooseCardFromHand() const;
     void checkHandForPairs();
-    Card takeTurn();
+    void takeTurn(Deck& d, player &p);
 private:
     vector<Card> myHand;
     vector<Card> myBook;
